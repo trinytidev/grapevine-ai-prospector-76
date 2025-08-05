@@ -18,10 +18,12 @@ import {
   Calendar,
   CheckCircle,
   AlertCircle,
-  XCircle 
+  XCircle,
+  Plus
 } from "lucide-react";
 import { Lead, mockLeads } from "@/types/lead";
 import { useToast } from "@/hooks/use-toast";
+import { CreateLeadForm } from "./CreateLeadForm";
 
 const getStatusColor = (status: Lead['status']) => {
   switch (status) {
@@ -65,6 +67,7 @@ export const LeadsTable = () => {
   const [selectedLead, setSelectedLead] = useState<Lead | null>(null);
   const [generatedProposal, setGeneratedProposal] = useState("");
   const [isGenerating, setIsGenerating] = useState(false);
+  const [showCreateForm, setShowCreateForm] = useState(false);
   const { toast } = useToast();
 
   const filteredLeads = leads.filter(lead => {
@@ -129,11 +132,30 @@ Best regards,
     setGeneratedProposal("");
   };
 
+  const handleLeadCreated = (newLead: Lead) => {
+    setLeads(prev => [newLead, ...prev]);
+    setShowCreateForm(false);
+  };
+
+  if (showCreateForm) {
+    return (
+      <CreateLeadForm 
+        onLeadCreated={handleLeadCreated}
+        onCancel={() => setShowCreateForm(false)}
+      />
+    );
+  }
+
   return (
     <Card className="bg-gradient-secondary shadow-card">
       <CardHeader>
         <div className="flex flex-col sm:flex-row justify-between items-start sm:items-center gap-4">
           <CardTitle className="text-2xl font-bold">Lead Pipeline</CardTitle>
+          
+          <Button onClick={() => setShowCreateForm(true)} className="flex items-center gap-2">
+            <Plus className="w-4 h-4" />
+            Add Lead
+          </Button>
           
           <div className="flex flex-col sm:flex-row gap-2 w-full sm:w-auto">
             <div className="relative">
