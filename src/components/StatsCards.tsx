@@ -1,38 +1,45 @@
 import { Card, CardContent } from "@/components/ui/card";
 import { TrendingUp, Target, DollarSign, Clock } from "lucide-react";
-
-const stats = [
-  {
-    title: "Active Leads",
-    value: "24",
-    change: "+12%",
-    icon: Target,
-    color: "text-primary"
-  },
-  {
-    title: "Proposals Sent",
-    value: "18",
-    change: "+8%", 
-    icon: TrendingUp,
-    color: "text-success"
-  },
-  {
-    title: "Potential Value",
-    value: "$45,600",
-    change: "+23%",
-    icon: DollarSign,
-    color: "text-warning"
-  },
-  {
-    title: "Response Rate",
-    value: "68%",
-    change: "+5%",
-    icon: Clock,
-    color: "text-accent"
-  }
-];
+import { useLeads } from "@/hooks/useLeads";
 
 export const StatsCards = () => {
+  const { leads } = useLeads();
+  
+  const totalLeads = leads.length;
+  const activeProposals = leads.filter(lead => lead.proposal_sent).length;
+  const responseRate = totalLeads > 0 ? Math.round((activeProposals / totalLeads) * 100) : 0;
+  const estimatedRevenue = leads.reduce((sum, lead) => sum + (lead.budget || 0), 0);
+
+  const stats = [
+    {
+      title: "Active Leads",
+      value: totalLeads.toString(),
+      change: "+12%",
+      icon: Target,
+      color: "text-primary"
+    },
+    {
+      title: "Proposals Sent",
+      value: activeProposals.toString(),
+      change: "+8%", 
+      icon: TrendingUp,
+      color: "text-success"
+    },
+    {
+      title: "Potential Value",
+      value: `$${(estimatedRevenue / 1000).toFixed(1)}k`,
+      change: "+23%",
+      icon: DollarSign,
+      color: "text-warning"
+    },
+    {
+      title: "Response Rate",
+      value: `${responseRate}%`,
+      change: "+5%",
+      icon: Clock,
+      color: "text-accent"
+    }
+  ];
   return (
     <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6 mb-8">
       {stats.map((stat, index) => (

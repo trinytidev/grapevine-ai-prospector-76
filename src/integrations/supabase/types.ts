@@ -123,6 +123,90 @@ export type Database = {
         }
         Relationships: []
       }
+      leads: {
+        Row: {
+          ai_score: number | null
+          budget: number | null
+          client: string | null
+          created_at: string
+          deadline: string | null
+          description: string | null
+          id: string
+          platform: string
+          posted_date: string | null
+          proposal_content: string | null
+          proposal_sent: boolean | null
+          skills: string[] | null
+          status: string
+          title: string
+          updated_at: string
+          user_id: string
+        }
+        Insert: {
+          ai_score?: number | null
+          budget?: number | null
+          client?: string | null
+          created_at?: string
+          deadline?: string | null
+          description?: string | null
+          id?: string
+          platform: string
+          posted_date?: string | null
+          proposal_content?: string | null
+          proposal_sent?: boolean | null
+          skills?: string[] | null
+          status?: string
+          title: string
+          updated_at?: string
+          user_id: string
+        }
+        Update: {
+          ai_score?: number | null
+          budget?: number | null
+          client?: string | null
+          created_at?: string
+          deadline?: string | null
+          description?: string | null
+          id?: string
+          platform?: string
+          posted_date?: string | null
+          proposal_content?: string | null
+          proposal_sent?: boolean | null
+          skills?: string[] | null
+          status?: string
+          title?: string
+          updated_at?: string
+          user_id?: string
+        }
+        Relationships: []
+      }
+      profiles: {
+        Row: {
+          avatar_url: string | null
+          created_at: string
+          display_name: string | null
+          id: string
+          updated_at: string
+          user_id: string
+        }
+        Insert: {
+          avatar_url?: string | null
+          created_at?: string
+          display_name?: string | null
+          id?: string
+          updated_at?: string
+          user_id: string
+        }
+        Update: {
+          avatar_url?: string | null
+          created_at?: string
+          display_name?: string | null
+          id?: string
+          updated_at?: string
+          user_id?: string
+        }
+        Relationships: []
+      }
     }
     Views: {
       [_ in never]: never
