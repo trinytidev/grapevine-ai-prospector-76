@@ -1,6 +1,7 @@
 import { Header } from "@/components/Header";
 import { StatsCards } from "@/components/StatsCards";
 import { LeadsTable } from "@/components/LeadsTable";
+import { LeadScraper } from "@/components/LeadScraper";
 
 const Index = () => {
   return (
@@ -18,6 +19,11 @@ const Index = () => {
         </div>
         
         <StatsCards />
+        
+        <div className="mb-8">
+          <LeadScraper />
+        </div>
+        
         <LeadsTable />
       </main>
     </div>
