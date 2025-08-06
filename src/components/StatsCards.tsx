@@ -14,28 +14,24 @@ export const StatsCards = () => {
     {
       title: "Active Leads",
       value: totalLeads.toString(),
-      change: "+12%",
       icon: Target,
       color: "text-primary"
     },
     {
       title: "Proposals Sent",
       value: activeProposals.toString(),
-      change: "+8%", 
       icon: TrendingUp,
       color: "text-success"
     },
     {
       title: "Potential Value",
-      value: `$${(estimatedRevenue / 1000).toFixed(1)}k`,
-      change: "+23%",
+      value: estimatedRevenue > 0 ? `$${(estimatedRevenue / 1000).toFixed(1)}k` : "$0",
       icon: DollarSign,
       color: "text-warning"
     },
     {
       title: "Response Rate",
       value: `${responseRate}%`,
-      change: "+5%",
       icon: Clock,
       color: "text-accent"
     }
@@ -49,9 +45,6 @@ export const StatsCards = () => {
               <div>
                 <p className="text-sm text-muted-foreground">{stat.title}</p>
                 <p className="text-3xl font-bold text-foreground">{stat.value}</p>
-                <p className="text-sm text-success">
-                  {stat.change} from last week
-                </p>
               </div>
               <div className={`p-3 rounded-lg bg-gradient-primary ${stat.color}`}>
                 <stat.icon className="w-6 h-6 text-primary-foreground" />
