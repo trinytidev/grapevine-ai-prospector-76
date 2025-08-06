@@ -137,6 +137,7 @@ export type Database = {
           proposal_content: string | null
           proposal_sent: boolean | null
           skills: string[] | null
+          source_url: string | null
           status: string
           title: string
           updated_at: string
@@ -155,6 +156,7 @@ export type Database = {
           proposal_content?: string | null
           proposal_sent?: boolean | null
           skills?: string[] | null
+          source_url?: string | null
           status?: string
           title: string
           updated_at?: string
@@ -173,6 +175,7 @@ export type Database = {
           proposal_content?: string | null
           proposal_sent?: boolean | null
           skills?: string[] | null
+          source_url?: string | null
           status?: string
           title?: string
           updated_at?: string
